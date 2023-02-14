@@ -14,7 +14,7 @@ public:
             ans += carry % 2 + '0';
             carry /= 2;
         }
-        reverse(begin(ans), end(ans));
+        reverse(ans.begin(), ans.end());
         return ans;
     }
 };
