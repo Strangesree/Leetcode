@@ -11,7 +11,7 @@ public:
             mid=(low+high)/2;
             if(nums[mid]==target)
                 return mid;
-            if(target<nums[mid])
+            else if(target<nums[mid])
                 high=mid-1;
             else
                 low=mid+1;
