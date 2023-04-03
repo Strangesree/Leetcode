@@ -14,14 +14,9 @@ public:
                 left++;
                 right--;
             }    
-            else if(people[left]+people[right]>limit)
-            {
-                right--;
-                ans++;
-            }
             else
             {
-                left++;
+                right--;
                 ans++;
             }
         }
