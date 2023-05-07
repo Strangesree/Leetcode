@@ -6,13 +6,13 @@
 var createCounter = function(init) {
     let initcount = init;
     function increment(){
-        return ++init;
+        return ++initcount;
     }
     function decrement(){
-        return --init;
+        return --initcount;
     }
     function reset(){
-        init = initcount;    // we need to update that
+        initcount = init;    // we need to update that
         return initcount;   // not only returning the initcount
     }
     return {
