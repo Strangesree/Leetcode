@@ -18,20 +18,20 @@ public:
                 start++;
             }
             right--;
-            if(top<=bottom){
+            // if(top<=bottom){
                 for(int i=right;i>=left;i--){
                     ans[bottom][i]=start;
                     start++;
                 }
                 bottom--;
-            }
-            if(left<=right){
+            // }
+            // if(left<=right){
                 for(int i=bottom;i>=top;i--){
                     ans[i][left]=start;
                     start++;
                 }
                 left++;
-            }
+            // }
         }
         return ans;
     }
