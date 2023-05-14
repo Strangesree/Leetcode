@@ -8,13 +8,13 @@ public:
         }
         int a=0,b=0,c=0;
         if(i-1>=0 && j+1<n && grid[i-1][j+1]>grid[i][j]){
-            a =1+ solve(i-1,j+1,m,n,grid,dp);
+            a = 1 + solve(i-1,j+1,m,n,grid,dp);
         }
         if(i+1<m && j+1<n&&grid[i+1][j+1]>grid[i][j]){
-            b = 1+solve(i+1,j+1,m,n,grid,dp);
+            b = 1 + solve(i+1,j+1,m,n,grid,dp);
         }
         if(j+1<n&&grid[i][j+1]>grid[i][j]){
-            c =1+ solve(i,j+1,m,n,grid,dp);
+            c = 1+ solve(i,j+1,m,n,grid,dp);
         }
         return dp[i][j] = max({a,b,c});
     }
@@ -24,9 +24,9 @@ public:
         int i,j,ans=0;
         vector<vector<int>> dp(m,vector<int>(n,-1));
         for(i = 0; i < m; i++){
-                if(dp[i][0]==-1){
+                // if(dp[i][0]==-1){
                     ans = max(ans,solve(i,0,m,n,grid,dp));
-                }
+                // }
         }
         return ans;
     }
