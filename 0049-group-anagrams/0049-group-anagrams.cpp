@@ -1,21 +1,28 @@
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        vector<vector<string>> ans;
-        map<map<char,int>, vector<string>> mp;
-        int n = strs.size();
-        for(int i=0;i<n;i++)
-        {
-            map<char,int> temp;
-            for(char c:strs[i]){
-                temp[c]++;
-            }
-
-            mp[temp].push_back(strs[i]);
+    string strsort(string s){
+        int counter[26] = {0};
+        for(char c:s)
+            counter[c-'a']++;
+        string t;
+        for(int c=0;c<26;c++){
+            t += string(counter[c],c+'a');    //construct counter copies of char
         }
-        for(auto itr=mp.begin();itr!=mp.end();itr++)
+        return t;
+    }
+
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>>ans;
+        unordered_map<string, vector<string>>mp;
+        for(int i = 0 ; i < strs.size() ; i++)
         {
-            ans.push_back(itr->second);
+            string s = strs[i];
+            // sort(strs[i].begin(),strs[i].end());
+            mp[strsort(s)].push_back(s);
+        }
+        for(auto i : mp)
+        {
+            ans.push_back(i.second);
         }
         return ans;
     }
