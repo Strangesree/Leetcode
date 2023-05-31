@@ -3,14 +3,15 @@ public:
     vector<int> evenOddBit(int n) {
         int even = 0;
         int odd = 0;
-        for(int i=0;i<32;i++){
-            if(n & (1<<i)){
-                if(i%2 == 0)
-                    odd++;
-                else
-                    even++;
-            }
+        int i = 0;
+        while(n!=0){
+            if(i%2==0 and (n&1)==1)
+                even++;
+            if(i%2!=0 and (n&1)==1)
+                odd++;
+            i++;
+            n=n>>1;
         }
-        return {odd,even};
+        return {even,odd};
     }
 };
