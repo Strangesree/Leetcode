@@ -8,19 +8,12 @@ public:
         int j = m-1;
         while(i<n && j>=0){
             if(grid[i][j]<0)
-            {    
-                ans++;
-                j--;
-                if(j<0)
-                {
-                    i++;
-                    j = m-1;
-                }
+            {
+                --j;
+                ans += n-i;     // m-i negative numbers in current column
             }
-            else{
-                i++;
-                j = m-1;
-            }
+            else
+                ++i;
         }
         return ans;
     }
