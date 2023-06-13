@@ -1,23 +1,22 @@
 class Solution {
 public:
     int equalPairs(vector<vector<int>>& grid) {
-        int count=0;
-        int n=grid.size();
-        unordered_map<string,int> mp;
-        for(int i=0; i<n;i++){
-            string temp="";
-            for(int j:grid[i])
-                temp += to_string(j)+"#";
-            mp[temp]++;
+        int ans = 0;
+        map<vector<int>, int> mp;
+        // Storing each row int he map
+        for (int i = 0; i < grid.size(); i++)
+            mp[grid[i]]++;
+        
+        for (int i = 0; i < grid[0].size(); i++)
+        {
+            vector<int> v;
+            // extracting column in a vector.
+            for (int j = 0; j < grid.size(); j++)
+                v.push_back(grid[j][i]);
+            // Add the number of times that column appeared as a row.
+            ans += mp[v];
         }
-        for(int i=0; i<n;i++){
-            string ans="";
-            //Traversing the matrix column wise and generating new key 
-            for(int j=0; j<n;j++)
-                ans+=to_string(grid[j][i])+"#";
-            // adding the number of occurences of the key generated 
-            count+=mp[ans];
-        }
-        return count;
+        // Return the number of count
+        return ans;
     }
 };
