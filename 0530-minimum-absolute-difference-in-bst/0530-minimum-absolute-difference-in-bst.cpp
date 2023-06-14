@@ -11,25 +11,15 @@
  */
 class Solution {
 public:
-vector<int> ans;
-    void helper(TreeNode* root)
-    {
-        if(root!=NULL)
-        {
-            helper(root->left);
-            ans.push_back(root->val);
-            helper(root->right);
-        }
-    }
+    int ans = INT_MAX ,val = -1;
     int getMinimumDifference(TreeNode* root) {
-        helper(root);
-        int temp=ans[0];
-        int ans1=INT_MAX;
-        for(int i=1;i<ans.size();i++)
-        {
-            if(ans[i]-ans[i-1]<ans1)
-                ans1=ans[i]-ans[i-1];
-        }
-        return ans1;
+        if(root->left!=NULL)
+            getMinimumDifference(root->left);
+        if(val>=0)   // we need some value to compare
+            ans = min(ans,abs(root->val - val));
+        val = root->val;
+        if(root->right!=NULL)
+            getMinimumDifference(root->right);
+        return ans;        
     }
 };
