@@ -5,18 +5,17 @@ public:
         int longest_sequence = 0; 
         for(int i=0; i<nums.size(); i++)
         {
-            if(s.find(nums[i] - 1)!=s.end())
+            if(s.count(nums[i] - 1))
                 continue;   
             else
             {
                 int count = 0;
                 int current_element = nums[i]; 
-                while(s.find(current_element) != s.end())
+                while(s.count(current_element))
                 {
                     count++;
                     current_element++;
                 }
-                
                 longest_sequence = max(longest_sequence,count);
             }
         }   
