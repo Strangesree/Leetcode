@@ -4,16 +4,17 @@ public:
         unordered_map<char,int> mp;
         for(int i=0;i<s.size();i++)
             mp[s[i]]++;
-        priority_queue<pair<int,char>> pq;
-        for(auto i:mp){
-            pq.push({i.second,i.first});
+        map<int, string> dupStr;
+        for(auto v : mp) {
+            char c = v.first;
+            int n = v.second;
+            dupStr[n] += string(n, c);
         }
-        string ans;
-        while(!pq.empty()){
-            pair<int,char> val = pq.top();
-            pq.pop();
-            ans.append(val.first,val.second);
+        
+        string res;
+        for(auto rit = dupStr.rbegin(); rit != dupStr.rend(); ++rit) {
+            res += rit->second;
         }
-        return ans;
+        return res;
     }
 };
