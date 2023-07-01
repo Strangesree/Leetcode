@@ -1,21 +1,33 @@
 class Solution {
 public:
-    int ans=INT_MAX,k;
-    void func(vector<int>&cookies,vector<int> &ppl,int index){
-        if(index==cookies.size()){
-            ans=min(ans,*max_element(begin(ppl),end(ppl)));
-            return;
+
+   void solve(int ind,int n,vector<int>& nums,vector<int>& childGet,int k,int &ans)
+    {
+        if(ind==n)
+        {
+            int maxi=INT_MIN;
+            for(int i=0;i<k;i++)
+            {
+                maxi=max(maxi,childGet[i]);
+            }
+            ans=min(ans,maxi);
+            return ;
         }
-        for(int i=0;i<k;i++){
-            ppl[i]+=cookies[index];
-            func(cookies,ppl,index+1);
-            ppl[i]-=cookies[index];
+
+        for(int i=0;i<k;i++)
+        {
+            childGet[i]+=nums[ind];
+            solve(ind+1,n,nums,childGet,k,ans);
+            childGet[i]-=nums[ind];
         }
     }
-    int distributeCookies(vector<int>& cookies, int k) {
-        this->k=k;
-        vector<int>ppl(k,0);
-        func(cookies,ppl,0);
-        return ans;
+    int distributeCookies(vector<int>& nums, int k) 
+    {
+    
+       int n=nums.size();
+       int ans=INT_MAX;
+       vector<int> childGet(k,0);
+       solve(0,n,nums,childGet,k,ans);
+       return ans;
     }
 };
