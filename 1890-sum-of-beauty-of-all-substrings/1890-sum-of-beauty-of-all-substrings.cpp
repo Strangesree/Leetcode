@@ -17,7 +17,7 @@ public:
                 maxi = 0;
                 mini = INT_MAX;
             }
-            mp.clear();
+            mp.clear(); /// O(n)*O(n)*O(distinct charaters)
         }
         return ans;
 
