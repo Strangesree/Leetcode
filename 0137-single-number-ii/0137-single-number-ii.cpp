@@ -1,11 +1,15 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int once = 0,twice = 0;
-        for(int n:nums){
-            once = (~twice)&(once^n);
-            twice = (~once)&(twice^n);
+        unordered_map<int, int> m;
+        for(auto x: nums){
+            m[x]++;
         }
-        return once;
+        for(auto x: m){
+            if(x.second == 1){
+                return x.first;
+            }
+        }
+        return -1;
     }
 };
