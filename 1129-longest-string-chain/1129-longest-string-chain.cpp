@@ -27,11 +27,10 @@ public:
         sort(words.begin(),words.end(),comp);
         for(int i=0;i<n;i++){
             for(int prev = 0;prev<i;prev++){
-                if(compare(words[i],words[prev]) && 1+dp[prev]>dp[i])
-                    dp[i] = 1+dp[prev];
+                if(compare(words[i],words[prev]))
+                    dp[i] = max(dp[i],1+dp[prev]);
             }
-            if(dp[i]>ans)
-                ans = dp[i];
+            ans = max(ans,dp[i]);
         }
         return ans;
     }
